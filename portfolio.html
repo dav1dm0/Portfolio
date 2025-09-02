@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Morohunfola | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #d1c4e9);
+            scroll-behavior: smooth;
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(90deg, #4f46e5, #818cf8, #a78bfa, #4f46e5);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-animation 4s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .tech-tag {
+            background-color: rgba(79, 70, 229, 0.1);
+            color: #4338ca;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .tech-tag:hover {
+            background-color: rgba(79, 70, 229, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <main id="app" class="container mx-auto p-4 md:p-8">
+        <!-- Home Page View -->
+        <div id="home-view">
+            <header class="text-center py-12">
+                <h1 class="text-5xl md:text-7xl font-black mb-4 animated-gradient-text">David Morohunfola</h1>
+                <p class="text-xl md:text-2xl text-gray-700">Software Engineer & Innovator</p>
+            </header>
+
+            <div id="projects-grid" class="space-y-12">
+                <!-- Project sections will be dynamically inserted here -->
+            </div>
+            <section class="my-16 text-center">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-800">About Me</h2>
+                <div class="max-w-3xl mx-auto glassmorphism p-8 rounded-2xl">
+                    <p class="text-lg text-gray-700">
+                        <!-- Personal profile section  -->
+                        A passionate and driven computer science graduate with a knack for building elegant solutions to
+                        complex problems. I thrive in collaborative environments and am always looking for the next
+                        challenge to expand my skills.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Project Detail View -->
+        <div id="project-detail-view" class="hidden">
+            <!-- Project details  -->
+        </div>
+    </main>
+
+    <script>
+        const projectsData = [
+            {
+                id: 'cooking-formulation-designer',
+                title: 'Cooking Formulation Designer',
+                short_description: 'A web app that allows users to create cooking recipes from a database of ingredients, with real-time cost calculation.',
+                category: 'Application/Software Development',
+                status: 'In Progress',
+                github_link: 'https://github.com/dav1dm0/mini-formulation-designer',
+                technologies: ['Next.js', 'TypeScript', 'React.js', 'Tailwind CSS', 'Node.js', 'AWS'],
+                content: `
+                    <p class="text-lg mb-6">This project is a web application designed to streamline the process of creating cooking recipes. It allows users to build and price their creations in real-time, pulling from a dynamic ingredient database.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Core Features</h3>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>Ingredient Database:</strong> Users can select from a pre-sourced database of ingredients, each with properties like name and cost.</li>
+                        <li><strong>Real-Time Costing:</strong> As ingredients are added to a recipe, the total cost is updated instantly, helping with budget planning.</li>
+                        <li><strong>Modern Tech Stack:</strong> Built with Next.js, TypeScript, and Tailwind CSS, and deployed on AWS to demonstrate proficiency in modern web technologies.</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'gamified-nutrition-app',
+                title: 'Gamified Nutrition Application',
+                short_description: 'A full-stack web application designed to increase user retention and self-efficacy in nutritional tracking through gamification.',
+                category: 'Application/Software Development',
+                github_link: 'https://github.com/dav1dm0/meal-planner',
+                technologies: ['React', 'JavaScript', 'Node.js', 'SQL', 'HTML', 'CSS', 'Git'],
+                content: `
+                    <p class="text-lg mb-6">This was my final year individual project, where I engineered a full-stack web application from the ground up to explore the impact of gamification on user motivation in a health context. The application allows users to track their meals, earn points, and care for a virtual pet that grows based on their consistency.</p>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Key Outcomes & Features</h3>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>Quantifiable Impact:</strong> The project was a success, demonstrating a 90% increase in perceived self-efficacy among test users, which positively correlated with advancements in their stage of behavioural change.</li>
+                        <li><strong>Full-Stack Architecture:</strong> The application was built with a React front-end and a Node.js back-end, managing all user data, authentication, and progress tracking via a SQL database.</li>
+                        <li><strong>User-Centric Design:</strong> The entire design process was informed by HCI principles, focusing on creating an intuitive and engaging user experience.</li>
+                    </ul>
+                    <!-- 
+                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Authentication & Security</h3>
+                    <p class="text-lg mb-6">
+                        [This section is currently being updated to reflect the latest security enhancements. It will detail the implementation of secure user authentication using JWTs (JSON Web Tokens), password hashing with bcrypt, and protected routes on the back-end to ensure user data is always secure.]
+                    </p>
+                    -->
+                    <div class="text-center">
+                        <a href="https://dav1dm0.github.io/meal-planner" target="_blank" class="inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors">Launch App</a>
+                    </div>
+                `
+            },
+            {
+                id: 'ppo-agent-celeste',
+                title: 'PPO Algorithm for Solving Celeste',
+                short_description: 'An implementation of the Proximal Policy Optimisation (PPO) algorithm from scratch in Python to train an agent to play complex platforming games.',
+                category: 'Machine Learning',
+                github_link: 'https://github.com/dav1dm0/ppo-agent-for-pyleste',
+                technologies: ['Python', 'PyTorch', 'NumPy', 'Matplotlib', 'Docker'],
+                content: `
+                    <p class="text-lg mb-6">This project involved a deep dive into reinforcement learning. I independently engineered the agent's architecture, including the neural network, reward functions, and state representation, to optimize its learning process. This work provided critical insight into the necessity of systematic experiment tracking and hyperparameter tuning, which are core principles of effective MLOps.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-indigo-800">Core Algorithm</h3>
+                            <div class="bg-gray-800 text-white p-4 rounded-lg text-sm overflow-x-auto">
+                                <pre><code>def update_policy(self):
+    states, actions, log_probs, rewards, dones, values = zip(*self.memory)
+    advantages, returns = self.compute_advantages(rewards, dones, values)
+
+    states = torch.FloatTensor(states).to(device)
+    actions = torch.tensor(actions).to(device)
+    old_log_probs = torch.stack(log_probs).detach().to(device)
+
+    for _ in range(EPOCHS):
+        probs, values = self.policy(states)
+        dist = Categorical(probs)
+        new_log_probs = dist.log_prob(actions)
+
+        ratio = (new_log_probs - old_log_probs).exp()
+        surrogate1 = ratio * advantages.detach()
+        surrogate2 = torch.clamp(ratio, 1 - EPSILON, 1 + EPSILON) * advantages.detach()
+
+        actor_loss = -torch.min(surrogate1, surrogate2).mean()
+        critic_loss = ((returns.detach() - values) ** 2).mean()
+        loss = actor_loss + 0.5 * critic_loss
+
+        self.optimizer.zero_grad()
+        loss.backward()
+        self.optimizer.step()
+
+    self.memory = []</code></pre>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-indigo-800">Agent in Action</h3>
+                            <div class="aspect-w-16 aspect-h-9">
+                                <iframe class="rounded-lg" src="https://www.youtube.com/embed/z3ljbwTQrY4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800">Training Rewards Per Episode</h3>
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <img src="ppo_rewards_chart.png" alt="Training rewards per episode" class="w-full h-auto rounded-md">
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'text-classifier',
+                title: 'Binary Text Classifier',
+                short_description: 'A project to classify text (e.g., movie reviews) as positive or negative, using various machine learning models and BERT for embeddings.',
+                category: 'Machine Learning',
+                github_link: 'https://huggingface.co/spaces/dav1dm0/text_classifier',
+                link_text: 'View on Hugging Face',
+                technologies: ['Python', 'Scikit-learn', 'PyTorch', 'Transformers', 'BERT', 'XGBoost', 'NLTK', 'Pandas', 'NumPy', 'Hugging Face', 'Docker'],
+                content: `
+                    <p class="text-lg mb-6">This project involved developing and implementing various text classification models to sort positive and negative movie reviews. I engineered data pre-processing pipelines and experimented with multiple algorithms to compare their performance. The interactive demo below is hosted on Hugging Face Spaces and uses a Logistic Regression model for real-time classification.</p>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Interactive Demo</h3>
+                     <div class="flex justify-center mb-8">
+                        <iframe
+                            src="https://dav1dm0-text-classifier.hf.space"
+                            frameborder="0"
+                            width="850"
+                            height="450"
+                            class="rounded-lg shadow-lg"
+                        ></iframe>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Model Performance & Methodology</h3>
+                    <div class="bg-white/50 p-6 rounded-xl">
+                        <p class="mb-4">All models were trained on the same dataset using state-of-the-art <strong>BERT embeddings</strong> for text vectorization, which provides a much richer contextual understanding of the text compared to older methods like TF-IDF. The live demo embedded above uses the <strong>Logistic Regression</strong> model for its balance of speed and accuracy.</p>
+                        <p class="font-semibold mb-2">Accuracy results across different models were as follows:</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li><strong>Logistic Regression:</strong> 90.5% Accuracy</li>
+                            <li><strong>Support Vector Machine (SVM):</strong> 91.2% Accuracy</li>
+                            <li><strong>XGBoost:</strong> 90.8% Accuracy</li>
+                            <li><strong>Naive Bayes:</strong> 88.7% Accuracy</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                id: 'zoopla-extension',
+                title: 'Zoopla Property Age Extension',
+                short_description: 'A Chrome extension using JavaScript to fetch and display the age of a property directly on a Zoopla listing page.',
+                category: 'Extensions',
+                status: 'Coming Soon!',
+                github_link: 'https://github.com/dav1dm0/zoopla-extension',
+                technologies: ['JavaScript', 'HTML', 'CSS', 'Chrome API'],
+                content: `
+                    <p class="text-lg mb-6">This project is a Chrome extension designed to read the address from a property page on Zoopla, connect to an external API, and display the age of the property directly on the page. It's a practical tool that demonstrates my ability to work with web APIs and build useful browser extensions.</p>
+                `
+            },
+            {
+                id: 'scientific-paper-contribution',
+                title: 'Co-author on Published Scientific Paper',
+                short_description: 'Contributed to a paper on the properties of ozone by performing data extraction and initial analysis on data from 29 scientific sources.',
+                category: 'Other',
+                github_link: 'https://doi.org/10.1016/j.jqsrt.2025.109399',
+                link_text: 'View Published Paper',
+                technologies: [],
+                content: `
+                    <p class="text-lg mb-6">I had the privilege of contributing as a co-author to the paper: <strong>"The ¹⁶O ₃ MARVEL dataset: critically evaluated line positions, intensities, and assignments for the X̃ ¹A ₁ ground electronic state"</strong>, published in the Journal of Quantitative Spectroscopy and Radiative Transfer.</p>
+                    <p class="text-lg mb-6">My primary role involved the meticulous task of performing data extraction and synthesis from 29 distinct scientific literature sources on the properties of ozone. I then conducted the initial data analysis on the measured line positions, which was a critical step in creating a new, critically evaluated dataset for the scientific community. This project honed my skills in data handling, attention to detail, and working within a rigorous academic framework.</p>
+                `
+            },
+            /*
+            {
+                id: 'football-data-analysis',
+                title: 'Football Data Analysis and Predictions',
+                short_description: 'A data science project to analyse football match data and build predictive models for match outcomes.',
+                category: 'Data Science Projects',
+                status: 'Coming Soon!',
+                github_link: '#',
+                technologies: ['Python', 'Pandas', 'Scikit-learn', 'Matplotlib'],
+                content: `<p>Details coming soon.</p>`
+            },
+            */
+        ];
+
+        const app = document.getElementById('app');
+        const homeView = document.getElementById('home-view');
+        const projectDetailView = document.getElementById('project-detail-view');
+        const projectsGrid = document.getElementById('projects-grid');
+
+        function renderHomePage() {
+            homeView.classList.remove('hidden');
+            projectDetailView.classList.add('hidden');
+            projectDetailView.innerHTML = '';
+
+            const categories = [
+                'Application/Software Development',
+                'Machine Learning',
+                'Data Science Projects',
+                'Extensions',
+                'Other'
+            ];
+
+            let gridHtml = '';
+
+            categories.forEach(category => {
+                const projectsInCategory = projectsData.filter(p => p.category === category);
+                if (projectsInCategory.length > 0) {
+                    gridHtml += `
+                        <section>
+                            <h2 class="text-3xl font-bold mb-6 text-indigo-800">${category}</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    `;
+                    projectsInCategory.forEach(project => {
+                        gridHtml += `
+                            <div class="glassmorphism rounded-2xl p-6 flex flex-col cursor-pointer transition-transform transform hover:-translate-y-2" onclick="renderProjectDetail('${project.id}')">
+                                <h3 class="text-xl font-bold mb-2 text-indigo-900">${project.title}</h3>
+                                <p class="text-gray-700 flex-grow">${project.short_description}</p>
+                                ${project.status ? `<span class="mt-4 text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 self-start">${project.status}</span>` : ''}
+                            </div>
+                        `;
+                    });
+                    gridHtml += `</div></section>`;
+                }
+            });
+
+            projectsGrid.innerHTML = gridHtml;
+        }
+
+        function renderProjectDetail(projectId) {
+            const project = projectsData.find(p => p.id === projectId);
+            if (!project) return;
+
+            window.scrollTo(0, 0);
+
+            const technologiesHtml = project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+
+            const buttonText = project.link_text || 'View on GitHub';
+
+            // Icon SVGs
+            const githubIcon = `<svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>`;
+            const externalLinkIcon = `<svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>`;
+
+            let buttonIcon;
+            if (project.id === 'scientific-paper-contribution' || project.id === 'text-classifier') {
+                buttonIcon = externalLinkIcon;
+            } else {
+                buttonIcon = githubIcon;
+            }
+
+
+            projectDetailView.innerHTML = `
+                <div class="max-w-4xl mx-auto">
+                    <button onclick="renderHomePage()" class="mb-8 text-indigo-600 font-semibold hover:underline">&larr; Back to all projects</button>
+                    <h1 class="text-4xl md:text-5xl font-black mb-4 text-indigo-900">${project.title}</h1>
+                    <div class="mb-8 glassmorphism p-8 rounded-2xl">
+                        ${project.content}
+                    </div>
+
+                    ${project.technologies && project.technologies.length > 0 ? `
+                     <div class="mb-8 glassmorphism p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800">Technologies Used</h3>
+                        <div class="flex flex-wrap gap-3">
+                            ${technologiesHtml}
+                        </div>
+                    </div>` : ''}
+                    
+                    ${project.github_link ? `
+                    <div class="text-center">
+                        <a href="${project.github_link}" target="_blank" class="inline-flex items-center bg-gray-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-900 transition-colors">
+                            ${buttonIcon}
+                            ${buttonText}
+                        </a>
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+
+            homeView.classList.add('hidden');
+            projectDetailView.classList.remove('hidden');
+        }
+
+        // Initial render
+        renderHomePage();
+
+    </script>
+</body>
+
+</html>
