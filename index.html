@@ -74,7 +74,7 @@
             </header>
 
             <div id="projects-grid" class="space-y-12">
-                <!-- Project sections will be dynamically inserted here -->
+                <!-- Project sections are dynamically inserted here -->
             </div>
             <section class="my-16 text-center">
                 <h2 class="text-3xl font-bold mb-4 text-indigo-800">About Me</h2>
@@ -126,12 +126,14 @@
                 category: 'Application/Software Development',
                 github_link: 'https://github.com/dav1dm0/meal-planner',
                 technologies: ['React', 'JavaScript', 'Node.js', 'SQL', 'HTML', 'CSS', 'Git'],
+                maintenance_message: "The server for this application is currently down for updates. Full functionality will be restored shortly.",
+                launch_button_disabled: true,
                 content: `
                     <p class="text-lg mb-6">This was my final year individual project, where I engineered a full-stack web application from the ground up to explore the impact of gamification on user motivation in a health context. The application allows users to track their meals, earn points, and care for a virtual pet that grows based on their consistency.</p>
                     
                     <h3 class="text-2xl font-bold mb-4 text-indigo-800">Key Outcomes & Features</h3>
                     <ul class="list-disc list-inside space-y-2 mb-6">
-                        <li><strong>Quantifiable Impact:</strong> The project was a success, demonstrating a 90% increase in perceived self-efficacy among test users, which positively correlated with advancements in their stage of behavioural change.</li>
+                        <li><strong>Quantifiable Impact:</strong> The project was a success, demonstrating a 83% rate of increase in perceived self-efficacy among test users, which positively correlated with advancements in their stage of behavioural change.</li>
                         <li><strong>Full-Stack Architecture:</strong> The application was built with a React front-end and a Node.js back-end, managing all user data, authentication, and progress tracking via a SQL database.</li>
                         <li><strong>User-Centric Design:</strong> The entire design process was informed by HCI principles, focusing on creating an intuitive and engaging user experience.</li>
                     </ul>
@@ -230,10 +232,10 @@
                         <p class="mb-4">All models were trained on the same dataset using state-of-the-art <strong>BERT embeddings</strong> for text vectorization, which provides a much richer contextual understanding of the text compared to older methods like TF-IDF. The live demo embedded above uses the <strong>Logistic Regression</strong> model for its balance of speed and accuracy.</p>
                         <p class="font-semibold mb-2">Accuracy results across different models were as follows:</p>
                         <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li><strong>Logistic Regression:</strong> 90.5% Accuracy</li>
-                            <li><strong>Support Vector Machine (SVM):</strong> 91.2% Accuracy</li>
-                            <li><strong>XGBoost:</strong> 90.8% Accuracy</li>
-                            <li><strong>Naive Bayes:</strong> 88.7% Accuracy</li>
+                            <li><strong>Logistic Regression:</strong> 84% Accuracy</li>
+                            <li><strong>Support Vector Machine (SVM):</strong> 86% Accuracy</li>
+                            <li><strong>XGBoost:</strong> 87% Accuracy</li>
+                            <li><strong>Naive Bayes:</strong> 83% Accuracy</li>
                         </ul>
                     </div>
                 `
@@ -340,6 +342,32 @@
                 buttonIcon = externalLinkIcon;
             } else {
                 buttonIcon = githubIcon;
+            }
+
+            // Maintenance message and button state
+            let maintenanceHtml = '';
+            let launchButtonDisabled = project.launch_button_disabled ? 'disabled' : '';
+            let launchButtonClasses = 'inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors';
+            if (project.launch_button_disabled) {
+                launchButtonClasses += ' opacity-50 cursor-not-allowed';
+            }
+
+            if (project.maintenance_message) {
+                maintenanceHtml = `
+                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md mb-6" role="alert">
+                        <p class="font-bold">Under Maintenance</p>
+                        <p>${project.maintenance_message}</p>
+                    </div>
+                `;
+            }
+
+            let contentHtml = project.content;
+            // Find the launch app button and inject maintenance message before it
+            const launchButtonRegex = /<div class="text-center">[\s\S]*?<\/div>/;
+            const launchButtonMatch = contentHtml.match(launchButtonRegex);
+            if (launchButtonMatch) {
+                const launchButtonHtml = launchButtonMatch[0].replace('<a ', `<a ${launchButtonDisabled} class="${launchButtonClasses}" `);
+                contentHtml = contentHtml.replace(launchButtonRegex, maintenanceHtml + launchButtonHtml);
             }
 
 
