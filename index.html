@@ -376,7 +376,7 @@
                     <button onclick="renderHomePage()" class="mb-8 text-indigo-600 font-semibold hover:underline">&larr; Back to all projects</button>
                     <h1 class="text-4xl md:text-5xl font-black mb-4 text-indigo-900">${project.title}</h1>
                     <div class="mb-8 glassmorphism p-8 rounded-2xl">
-                        ${project.content}
+                        ${contentHtml}
                     </div>
 
                     ${project.technologies && project.technologies.length > 0 ? `
