@@ -104,19 +104,19 @@
                 short_description: 'A full-stack web app for creating cooking recipes with real-time cost calculation, built with Next.js and Prisma.',
                 category: 'Application/Software Development',
                 github_link: 'https://github.com/dav1dm0/cooking-recipe-designer',
-                technologies: ['Next.js', 'TypeScript', 'React.js', 'Tailwind CSS', 'Node.js', 'Prisma', 'PostgreSQL', 'AWS Amplify', 'AWS RDS', 'NextAuth', 'bcrypt'],
+                technologies: ['Next.js', 'TypeScript', 'React.js', 'Tailwind CSS', 'Node.js', 'Prisma', 'PostgreSQL', 'Vercel/AWS', 'NextAuth', 'bcrypt'],
                 content: `
-                    <p class="text-lg mb-6">This project is a full-stack web application designed to streamline the process of creating and costing cooking recipes. The application is built with a modern, type-safe tech stack and deployed on AWS Amplify.</p>
+                    <p class="text-lg mb-6">This project is a full-stack web application designed to streamline the process of creating and costing cooking recipes. The application is built with a modern, type-safe tech stack and deployed on AWS with a backup instance hosted on Vercel.</p>
                     <h3 class="text-2xl font-bold mb-4 text-indigo-800">Core Features</h3>
                     <ul class="list-disc list-inside space-y-2 mb-6">
                         <li><strong>Full-Stack Architecture:</strong> Built with Next.js and TypeScript, featuring server-side logic and API routes for a robust and scalable application.</li>
-                        <li><strong>Database Management with Prisma:</strong> Utilizes Prisma as an ORM to interact with a PostgreSQL database hosted on AWS RDS, managing complex data relationships between users, recipes, ingredients, and suppliers.</li>
+                        <li><strong>Database Management with Prisma:</strong> Utilizes Prisma as an ORM to interact with a PostgreSQL database, managing complex data relationships between users, recipes, ingredients, and suppliers.</li>
                         <li><strong>User Authentication:</strong> Secure user registration and login functionality is handled by NextAuth, with password hashing implemented using bcrypt.</li>
                         <li><strong>Dynamic Recipe Builder:</strong> Users can search for ingredients and add them to a recipe, with a dynamic front-end that updates in real-time.</li>
                         <li><strong>Real-Time Costing:</strong> The application automatically calculates the estimated cost and total calories of a recipe as ingredients are added or quantities are changed.</li>
                     </ul>
                      <div class="text-center">
-                        <a href="https://main.d126c17a2r90tk.amplifyapp.com" target="_blank" class="inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors">Launch App</a>
+                        <a href="https://recipe-designer.vercel.app" target="_blank" class="inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors">Launch App</a>
                     </div>
                 `
             },
@@ -403,3 +403,4 @@
 
 
 </html>
+
