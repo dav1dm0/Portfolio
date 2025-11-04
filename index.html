@@ -1,407 +1,777 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Morohunfola | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #e0f7fa, #d1c4e9);
-            scroll-behavior: smooth;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Morohunfola | Full Stack Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #111827;
+      /* Dark gray background */
+      color: #d1d5db;
+      /* Light gray text */
+    }
 
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
+    ::selection {
+      background-color: #3b82f6;
+      /* Blue-500 */
+      color: #ffffff;
+    }
 
-        .animated-gradient-text {
-            background: linear-gradient(90deg, #4f46e5, #818cf8, #a78bfa, #4f46e5);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-animation 4s ease infinite;
-        }
+    /* Custom styles for the new tab component */
+    .tab-button {
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      font-size: 0.875rem;
+      /* 14px */
+      line-height: 1.25rem;
+      /* 20px */
+      border-radius: 0.5rem 0.5rem 0 0;
+      /* rounded-t-lg */
+      color: #9ca3af;
+      /* text-gray-400 */
+      background-color: transparent;
+      border: 2px solid transparent;
+      margin-bottom: -2px;
+      /* Overlap the border-b */
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
 
-        @keyframes gradient-animation {
-            0% {
-                background-position: 0% 50%;
-            }
+    .tab-button:hover {
+      color: #ffffff;
+      /* hover:text-white */
+      background-color: #1f2937;
+      /* hover:bg-gray-800 */
+    }
 
-            50% {
-                background-position: 100% 50%;
-            }
+    .tab-button.active-tab {
+      color: #ffffff;
+      /* active:text-white */
+      background-color: #1f2937;
+      /* active:bg-gray-800 */
+      border-color: #374151;
+      /* border-gray-700 */
+      border-bottom-color: #1f2937;
+      /* Hide bottom border */
+    }
 
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+    .tab-button:focus {
+      outline: none;
+    }
 
-        .tech-tag {
-            background-color: rgba(79, 70, 229, 0.1);
-            color: #4338ca;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.2s ease-in-out;
-        }
+    .tab-content {
+      display: none;
+      /* hidden */
+      padding: 1.25rem;
+      /* p-5 */
+      background-color: #1f2937;
+      /* bg-gray-800 */
+      border-radius: 0 0.5rem 0.5rem 0.5rem;
+      /* rounded-b-lg rounded-r-lg */
+      border: 2px solid #374151;
+      /* border-gray-700 */
+      min-height: 300px;
+      /* Give it some min height */
+    }
 
-        .tech-tag:hover {
-            background-color: rgba(79, 70, 229, 0.2);
-            transform: translateY(-2px);
-        }
-    </style>
+    .tab-content.active-content {
+      display: block;
+      /* block */
+    }
+
+    /* Styles for project external links */
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      /* 8px */
+      font-size: 0.875rem;
+      /* 14px */
+      font-weight: 500;
+      color: #9ca3af;
+      /* text-gray-400 */
+      transition: color 0.2s ease-in-out;
+    }
+
+    .project-link:hover {
+      color: #ffffff;
+      /* hover:text-white */
+    }
+
+    .project-link svg {
+      width: 1rem;
+      /* 16px */
+      height: 1rem;
+      /* 16px */
+    }
+  </style>
 </head>
 
-<body class="text-gray-800">
+<body class="antialiased">
+  <!-- Header -->
+  <header class="fixed w-full z-10 backdrop-blur-md bg-gray-900/60">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex-shrink-0 flex items-center">
+          <span class="font-bold text-xl text-white">David Morohunfola</span>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          <a href="#about"
+            class="text-gray-300 hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">
+            About
+          </a>
+          <a href="#tech-stack"
+            class="text-gray-300 hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">
+            Tech Stack
+          </a>
+          <a href="#projects"
+            class="text-gray-300 hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">
+            Projects
+          </a>
+          <a href="#contact"
+            class="text-gray-300 hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">
+            Contact
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-    <main id="app" class="container mx-auto p-4 md:p-8">
-        <!-- Home Page View -->
-        <div id="home-view">
-            <header class="text-center py-12">
-                <h1 class="text-5xl md:text-7xl font-black mb-4 animated-gradient-text">David Morohunfola</h1>
-                <p class="text-xl md:text-2xl text-gray-700">Software Engineer & Innovator</p>
-            </header>
+  <main class="pt-16">
+    <!-- Hero Section -->
+    <section id="hero" class="pt-24 pb-32">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight">
+          Hi, I'm David.
+          <br />
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
+            A Full Stack Engineer.
+          </span>
+        </h1>
+        <p class="mt-6 text-lg max-w-3xl text-gray-300">
+          I build scalable, secure, and user-centric web applications. With a
+          strong foundation in computer science and hands-on experience in
+          React, Node.js, and cloud deployment, I turn complex problems into
+          real-world solutions.
+        </p>
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+          <a href="#projects"
+            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
+            View My Work
+          </a>
+          <a href="#contact"
+            class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
+            Get In Touch
+          </a>
+        </div>
+      </div>
+    </section>
 
-            <div id="projects-grid" class="space-y-12">
-                <!-- Project sections are dynamically inserted here -->
+    <!-- About Me -->
+    <section id="about" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          class="text-3xl font-bold tracking-tight text-white sm:text-4xl text-center mb-12">
+          About Me
+        </h2>
+        <div class="max-w-3xl mx-auto text-lg text-gray-300 space-y-6">
+          <p>
+            Hello! I'm a full-stack engineer driven by a passion for building
+            things that are both useful and user-friendly. My journey started
+            in Computer Science at the University of Bath, which gave me a
+            strong theoretical foundation and a love for complex
+            problem-solving.
+          </p>
+          <p>
+            Today, I channel that passion into creating scalable, secure, and
+            efficient web applications. I thrive on the full-stack challenge:
+            architecting a robust Node.js API, containerizing it with Docker,
+            and deploying it to the cloud is just as exciting to me as crafting
+            a responsive and resilient React frontend.
+          </p>
+          <p>
+            I'm currently seeking a full-stack role where I can contribute to a
+            meaningful product, collaborate with a talented team, and continue
+            to learn and grow as an engineer.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="py-20 bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          class="text-3xl font-bold tracking-tight text-white sm:text-4xl text-center mb-12">
+          My Tech Stack
+        </h2>
+        <div
+          class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Category: Frontend -->
+          <div class="bg-gray-800/50 p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold text-white mb-4">Frontend</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>
+                <span class="text-blue-400 mr-2">›</span>JavaScript &
+                TypeScript
+              </li>
+              <li><span class="text-blue-400 mr-2">›</span>HTML5 & CSS3</li>
+              <li><span class="text-blue-400 mr-2">›</span>React</li>
+              <li><span class="text-blue-400 mr-2">›</span>Next.js</li>
+              <li><span class="text-blue-400 mr-2">›</span>Tailwind CSS</li>
+            </ul>
+          </div>
+
+          <!-- Category: Backend -->
+          <div class="bg-gray-800/50 p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold text-white mb-4">Backend</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li><span class="text-blue-400 mr-2">›</span>Node.js</li>
+              <li><span class="text-blue-400 mr-2">›</span>Express.js</li>
+              <li><span class="text-blue-400 mr-2">›</span>Python</li>
+              <li>
+                <span class="text-blue-400 mr-2">›</span>SQL (PostgreSQL,
+                SQLite)
+              </li>
+              <li><span class="text-blue-400 mr-2">›</span>Prisma (ORM)</li>
+              <li><span class="text-blue-400 mr-2">›</span>Redis (Caching)</li>
+              <li>
+                <span class="text-blue-400 mr-2">›</span>JWT & bcrypt (Auth)
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category: DevOps & Data Science -->
+          <div class="bg-gray-800/50 p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold text-white mb-4">
+              DevOps & Data Science
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+              <li><span class="text-blue-400 mr-2">›</span>Docker</li>
+              <li><span class="text-blue-400 mr-2">›</span>Git & GitHub</li>
+              <li><span class="text-blue-400 mr-2">›</span>AWS</li>
+              <li><span class="text-blue-400 mr-2">›</span>GCP (Google Cloud)</li>
+              <li>
+                <span class="text-blue-400 mr-2">›</span>Vercel & Hugging Face
+              </li>
+              <li><span class="text-blue-400 mr-2">›</span>PyTorch</li>
+              <li>
+                <span class="text-blue-400 mr-2">›</span>Scikit-learn & Pandas
+              </li>
+              <li><span class="text-blue-400 mr-2">›</span>SpaCy & NLTK</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          class="text-3xl font-bold tracking-tight text-white sm:text-4xl text-center mb-16">
+          Things I've Built
+        </h2>
+
+        <!-- Gamified Nutrition Project -->
+        <div class="mb-24" data-tab-wrapper="gn-tabs">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start p-6 bg-gray-900/50 rounded-lg shadow-xl">
+            <!-- Column 1: Title, Tech, Image -->
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold text-white">
+                Gamified Nutrition Application
+              </h3>
+              <p class="text-gray-400 font-medium pb-2">
+                React | Node.js | Express | PostgreSQL | Redis | Docker | GCP
+                | AWS
+              </p>
+              <!-- Project Links -->
+              <div class="flex flex-wrap gap-x-6 gap-y-2 pb-4">
+                <a href="https://davidmo.online/"
+                  target="_blank" rel="noopener noreferrer"
+                  class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                  Live App
+                </a>
+                <a href="https://github.com/dav1dm0/Gamified-Nutrition"
+                  target="_blank" rel="noopener noreferrer"
+                  class="project-link">
+                  <svg fill="currentColor" viewBox="0 0 24 24"
+                    aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+
+              <img
+                src="https://placehold.co/600x400/1f2937/9ca3af?text=Gamified+Nutrition+App"
+                alt="Gamified Nutrition App Placeholder"
+                class="w-full h-auto rounded-lg shadow-lg" />
             </div>
-            <section class="my-16 text-center">
-                <h2 class="text-3xl font-bold mb-4 text-indigo-800">About Me</h2>
-                <div class="max-w-3xl mx-auto glassmorphism p-8 rounded-2xl">
-                    <p class="text-lg text-gray-700">
-                        <!-- Personal profile section  -->
-                        A passionate and driven computer science graduate with a knack for building elegant solutions to
-                        complex problems. I thrive in collaborative environments and am always looking for the next
-                        challenge to expand my skills. I have a particular interest in leveraging my analytical and 
-                        technical skills to understand the problems my clients face and develop efficient solutions.
-                    </p>
+
+            <!-- Column 2: Tabbed Description -->
+            <div class="space-y-4">
+              <!-- Tab Buttons -->
+              <div class="flex flex-wrap border-b-2 border-gray-700">
+                <button class="tab-button active-tab" data-tab="gn-overview">
+                  Overview
+                </button>
+                <button class="tab-button" data-tab="gn-backend">
+                  Backend
+                </button>
+                <button class="tab-button" data-tab="gn-frontend">
+                  Frontend
+                </button>
+                <button class="tab-button" data-tab="gn-devops">
+                  DevOps
+                </button>
+              </div>
+
+              <!-- Tab Content Panels -->
+              <div class="tab-content-container">
+                <!-- Overview Panel -->
+                <div
+                  class="tab-content active-content prose prose-invert prose-sm max-w-none text-gray-300 space-y-3"
+                  id="gn-overview">
+                  <p>
+                    I built this full-stack application to test a hypothesis:
+                    could gamification make it easier for people to build
+                    healthy eating habits? The goal was to create an engaging
+                    platform where users are rewarded for tracking their meals.
+                  </p>
+                  <p>
+                    The app was a success, and I was able to measure an 83%
+                    rate of increase in user self-efficacy after consistent use.
+                  </p>
+                  <p>
+                    To build it, I used a monorepo structure (pnpm + Turbo) to
+                    manage the React frontend and Node.js backend. This setup
+                    allowed me to efficiently develop and manage dependencies
+                    for the entire stack.
+                  </p>
                 </div>
-            </section>
+                <!-- Backend Panel -->
+                <div
+                  class="tab-content prose prose-invert prose-sm max-w-none text-gray-300 space-y-3"
+                  id="gn-backend">
+                  <p>
+                    The backend is a security-first RESTful API built on
+                    Node.js and Express.
+                  </p>
+                  <ul class="list-disc pl-5">
+                    <li>
+                      <strong>Authentication:</strong> Implemented a stateless
+                      auth system using JSON Web Tokens (JWT). Passwords are
+                      never stored in plain text, only as hashes using bcrypt.
+                    </li>
+                    <li>
+                      <strong>Security:</strong> Hardened the API with Helmet
+                      to set secure HTTP headers and express-rate-limit to
+                      protect all endpoints from brute-force/DoS attacks.
+                    </li>
+                    <li>
+                      <strong>Database & Performance:</strong> Used PostgreSQL
+                      as the primary database and Redis for caching frequently
+                      accessed data, like the global leaderboard.
+                    </li>
+                    <li>
+                      <strong>Reliability:</strong> To prevent data
+                      corruption from simultaneous requests (a race condition),
+                      I refactored complex logic like point-and-level updates
+                      into single, atomic PostgreSQL queries. I also wrote a
+                      full suite of integration tests with Vitest and
+                      Supertest.
+                    </li>
+                  </ul>
+                </div>
+                <!-- Frontend Panel -->
+                <div
+                  class="tab-content prose prose-invert prose-sm max-w-none text-gray-300 space-y-3"
+                  id="gn-frontend">
+                  <p>
+                    The frontend is a responsive and resilient single-page
+                    application (SPA) built with React.
+                  </p>
+                  <ul class="list-disc pl-5">
+                    <li>
+                      <strong>Routing:</strong> Used React Router for all
+                      client-side navigation, including a `ProtectedRoute`
+                      component to ensure only logged-in users can access the
+                      main application.
+                    </li>
+                    <li>
+                      <strong>API Client:</strong> Centralized all API logic
+                      into a single Axios instance. This instance uses an
+                      interceptor to automatically attach the user's JWT to
+                      every outgoing request, keeping auth logic separate from
+                      the UI.
+                    </li>
+                    <li>
+                      <strong>Resilience:</strong> The entire app is wrapped
+                      in an Error Boundary component, which prevents a
+                      JavaScript error in one part of the UI from crashing the
+                      whole application for the user.
+                    </li>
+                    <li>
+                      <strong>UI:</strong> The dashboard, pet display, and
+                      progress bars all work together to give users instant
+                      visual feedback on their progress and level-ups.
+                    </li>
+                  </ul>
+                </div>
+                <!-- DevOps Panel -->
+                <div
+                  class="tab-content prose prose-invert prose-sm max-w-none text-gray-300 space-y-3"
+                  id="gn-devops">
+                  <p>
+                    I designed the application to be fully containerized and
+                    cloud-agnostic, and I deployed it to both AWS and GCP.
+                  </p>
+                  <ul class="list-disc pl-5">
+                    <li>
+                      <strong>Containerization:</strong> Wrote a multi-stage
+                      Dockerfile that builds the app and then copies only the
+                      production-ready files into a minimal, secure image. 
+                      This reduces the image size, attack surface, and 
+                      deployment time.
+                    </li>
+                    <li>
+                      <strong>AWS Deployment:</strong> Deployed to Elastic
+                      Beanstalk, using `pm2` as a production process manager
+                      to ensure the Node.js server would automatically
+                      restart if it ever failed.
+                    </li>
+                    <li>
+                      <strong>GCP Deployment:</strong> Architected the
+                      infrastructure for network security by placing the
+                      PostgreSQL database in a private VPC. This makes the
+                      database completely inaccessible from the public
+                      internet, allowing only the application server (within
+                      the same VPC) to connect.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Project Detail View -->
-        <div id="project-detail-view" class="hidden">
-            <!-- Project details  -->
+        <!-- Recipe Designer Project -->
+        <div class="mt-20">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start p-6 bg-gray-900/50 rounded-lg shadow-xl">
+            <!-- Project Text -->
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold text-white">Recipe Designer</h3>
+              <p class="text-gray-400 font-medium pb-2">
+                Next.js | TypeScript | Prisma | PostgreSQL | NextAuth
+              </p>
+              <!-- Project Links -->
+              <div class="flex flex-wrap gap-x-6 gap-y-2 pb-4">
+                <a href="https://recipe-designer.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                  Live App
+                </a>
+                <a href="https://github.com/dav1dm0/Cooking-Recipe-Designer"
+                  target="_blank" rel="noopener noreferrer"
+                  class="project-link">
+                  <svg fill="currentColor" viewBox="0 0 24 24"
+                    aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+              <div
+                class="prose prose-invert prose-sm max-w-none text-gray-300 space-y-3">
+                <p>
+                  This was a fast-paced project to build a full-stack recipe
+                  creation tool. I used Next.js for its hybrid static &
+                  server-side rendering, which allowed me to build a dynamic
+                  frontend and secure API routes in one place.
+                </p>
+                <ul class="list-disc pl-5">
+                  <li>
+                    The Prisma ORM made database interactions with PostgreSQL
+                    incredibly intuitive and type-safe.
+                  </li>
+                  <li>
+                    For authentication, I integrated NextAuth to handle
+                    secure user sign-up and login, including password hashing
+                    with bcrypt to protect user data.
+                  </li>
+                  <li>
+                    The main feature was a dynamic recipe builder that
+                    updated the total cost and calorie counts in real-time as
+                    a user added ingredients.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Project Image/Placeholder -->
+            <div>
+              <img
+                src="https://placehold.co/600x400/1f2937/9ca3af?text=Recipe+Designer+App"
+                alt="Recipe Designer App Placeholder"
+                class="w-full h-auto rounded-lg shadow-lg" />
+            </div>
+          </div>
         </div>
-    </main>
 
-    <script>
-        const projectsData = [
-            {
-                id: 'cooking-formulation-designer',
-                title: 'Cooking Formulation Designer',
-                short_description: 'A full-stack web app for creating cooking recipes with real-time cost calculation, built with Next.js and Prisma.',
-                category: 'Application/Software Development',
-                github_link: 'https://github.com/dav1dm0/cooking-recipe-designer',
-                technologies: ['Next.js', 'TypeScript', 'React.js', 'Tailwind CSS', 'Node.js', 'Prisma', 'PostgreSQL', 'Vercel/AWS', 'NextAuth', 'bcrypt'],
-                content: `
-                    <p class="text-lg mb-6">This project is a full-stack web application designed to streamline the process of creating and costing cooking recipes. The application is built with a modern, type-safe tech stack and deployed on AWS with a backup instance hosted on Vercel.</p>
-                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Core Features</h3>
-                    <ul class="list-disc list-inside space-y-2 mb-6">
-                        <li><strong>Full-Stack Architecture:</strong> Built with Next.js and TypeScript, featuring server-side logic and API routes for a robust and scalable application.</li>
-                        <li><strong>Database Management with Prisma:</strong> Utilizes Prisma as an ORM to interact with a PostgreSQL database, managing complex data relationships between users, recipes, ingredients, and suppliers.</li>
-                        <li><strong>User Authentication:</strong> Secure user registration and login functionality is handled by NextAuth, with password hashing implemented using bcrypt.</li>
-                        <li><strong>Dynamic Recipe Builder:</strong> Users can search for ingredients and add them to a recipe, with a dynamic front-end that updates in real-time.</li>
-                        <li><strong>Real-Time Costing:</strong> The application automatically calculates the estimated cost and total calories of a recipe as ingredients are added or quantities are changed.</li>
-                    </ul>
-                     <div class="text-center">
-                        <a href="https://recipe-designer.vercel.app" target="_blank" class="inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors">Launch App</a>
-                    </div>
-                `
-            },
-            {
-                id: 'gamified-nutrition-app',
-                title: 'Gamified Nutrition Application',
-                short_description: 'A full-stack web application designed to increase user retention and self-efficacy in nutritional tracking through gamification.',
-                category: 'Application/Software Development',
-                github_link: 'https://github.com/dav1dm0/Gamified-Nutrition',
-                technologies: ['React', 'JavaScript', 'Node.js', 'Express.js', 'PostgreSQL', 'HTML', 'CSS', 'Git', 'AWS Amplify', 'AWS RDS', 'AWS Elastic Beanstalk', 'VPC'],
-                content: `
-                    <p class="text-lg mb-6">This was my final year individual project, where I engineered a full-stack web application from the ground up to explore the impact of gamification on user motivation in a health context. The application allows users to track their meals, earn points, and care for a virtual pet that grows based on their consistency.</p>
-                    
-                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Key Outcomes & Features</h3>
-                    <ul class="list-disc list-inside space-y-2 mb-6">
-                        <li><strong>Quantifiable Impact:</strong> The project was a success, demonstrating a 83% rate of increase in perceived self-efficacy among test users, which positively correlated with advancements in their stage of behavioural change.</li>
-                        <li><strong>Scalable Cloud Architecture:</strong> The application is deployed on AWS, with the front end hosted on <strong>AWS Amplify</strong>, the back end on <strong>Elastic Beanstalk</strong>, and the PostgreSQL database on <strong>AWS RDS</strong>. A <strong>VPC</strong> is used to create a private network for the backend and database, ensuring secure communication between the services.</li>
-                        <li><strong>User-Centric Design:</strong> The entire design process was informed by HCI principles, focusing on creating an intuitive and engaging user experience.</li>
-                    </ul>
-                    <div class="text-center">
-                        <a href="https://davidmo.online/" target="_blank" class="inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors">Launch App</a>
-                    </div>
-                `
-            },
-            {
-                id: 'ppo-agent-celeste',
-                title: 'PPO Algorithm for Solving Celeste',
-                short_description: 'An implementation of the Proximal Policy Optimisation (PPO) algorithm from scratch in Python to train an agent to play complex platforming games.',
-                category: 'Machine Learning',
-                github_link: 'https://github.com/dav1dm0/ppo-agent-for-pyleste',
-                technologies: ['Python', 'PyTorch', 'NumPy', 'Matplotlib', 'Docker'],
-                content: `
-                    <p class="text-lg mb-6">This project involved a deep dive into reinforcement learning. I independently engineered the agent's architecture, including the neural network, reward functions, and state representation, to optimize its learning process. This work provided critical insight into the necessity of systematic experiment tracking and hyperparameter tuning, which are core principles of effective MLOps.</p>
-                    
-                    <div class="grid md:grid-cols-2 gap-8 mb-6">
-                        <div>
-                            <h3 class="text-2xl font-bold mb-4 text-indigo-800">Core Algorithm</h3>
-                            <div class="bg-gray-800 text-white p-4 rounded-lg text-sm overflow-x-auto">
-                                <pre><code>def update_policy(self):
-    states, actions, log_probs, rewards, dones, values = zip(*self.memory)
-    advantages, returns = self.compute_advantages(rewards, dones, values)
+        <!-- Celeste RL Agent Project -->
+        <div class="mt-20">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start p-6 bg-gray-900/50 rounded-lg shadow-xl">
+            <!-- Project Image -->
+            <div>
+              <img src="ppo_rewards_chart.png" alt="PPO Rewards Chart"
+                class="w-full h-auto rounded-lg shadow-lg" />
+            </div>
 
-    states = torch.FloatTensor(states).to(device)
-    actions = torch.tensor(actions).to(device)
-    old_log_probs = torch.stack(log_probs).detach().to(device)
+            <!-- Project Text -->
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold text-white">
+                Celeste Reinforcement Learning Agent
+              </h3>
+              <p class="text-gray-400 font-medium pb-2">Python | PyTorch</p>
+              <!-- Project Links -->
+              <div class="flex flex-wrap gap-x-6 gap-y-2 pb-4">
+                <a href="https://www.youtube.com/watch?v=M-OfsWk44a4"
+                  target="_blank" rel="noopener noreferrer"
+                  class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                  Watch Demo
+                </a>
+                <a href="https://github.com/dav1dm0/PPO-Agent-for-Pyleste"
+                  target="_blank" rel="noopener noreferrer"
+                  class="project-link">
+                  <svg fill="currentColor" viewBox="0 0 24 24"
+                    aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+              <div
+                class="prose prose-invert prose-sm max-w-none text-gray-300 space-y-3">
+                <p>
+                  As part of an academic group project, my team aimed to solve
+                  a complex gaming environment (the platformer
+                  <i>Celeste</i>) using deep reinforcement learning.
+                </p>
+                <p>
+                  My role involved implementing a Proximal Policy Optimization
+                  (PPO) algorithm from scratch and engineering the agent's
+                  architecture and reward function. We successfully developed
+                  an agent capable of autonomous gameplay, which was a
+                  fascinating dive into the practical challenges of applied
+                  ML.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    for _ in range(EPOCHS):
-        probs, values = self.policy(states)
-        dist = Categorical(probs)
-        new_log_probs = dist.log_prob(actions)
+        <!-- Movie Review Project -->
+        <div class="mt-20">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start p-6 bg-gray-900/50 rounded-lg shadow-xl">
+            <!-- Project Text -->
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold text-white">
+                Movie Review Sentiment Analysis
+              </h3>
+              <p class="text-gray-400 font-medium pb-2">
+                Python | Scikit-learn | SpaCy | NLTK | Docker
+              </p>
+              <!-- Project Links -->
+              <div class="flex flex-wrap gap-x-6 gap-y-2 pb-4">
+                <a href="https://huggingface.co/spaces/dav1dm0/text_classifier"
+                  target="_blank" rel="noopener noreferrer"
+                  class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                  Try it Live (Hugging Face)
+                </a>
+                <a href="https://github.com/dav1dm0/BinaryTextClassification"
+                  target="_blank" rel="noopener noreferrer"
+                  class="project-link">
+                  <svg fill="currentColor" viewBox="0 0 24 24"
+                    aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+              <div
+                class="prose prose-invert prose-sm max-w-none text-gray-300 space-y-3">
+                <p>
+                  This project was a deep dive into natural language
+                  processing (NLP). The goal was to build a model that could
+                  accurately classify movie reviews as positive or negative.
+                </p>
+                <ul class="list-disc pl-5">
+                  <li>
+                    I engineered a complete data pre-processing pipeline using
+                    SpaCy and NLTK for tokenisation.
+                  </li>
+                  <li>
+                    I then experimented with different feature extraction
+                    methods, like TF-IDF vectorization, and tested four
+                    different classification models, ultimately achieving 87%
+                    accuracy on the test set.
+                  </li>
+                  <li>
+                    The entire pipeline was containerized using Docker to
+                    ensure it could be run reliably in any environment.
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-        ratio = (new_log_probs - old_log_probs).exp()
-        surrogate1 = ratio * advantages.detach()
-        surrogate2 = torch.clamp(ratio, 1 - EPSILON, 1 + EPSILON) * advantages.detach()
+            <!-- Project Image/Placeholder -->
+            <div>
+              <img
+                src="https://placehold.co/600x400/1f2937/9ca3af?text=Sentiment+Analysis"
+                alt="Sentiment Analysis Placeholder"
+                class="w-full h-auto rounded-lg shadow-lg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        actor_loss = -torch.min(surrogate1, surrogate2).mean()
-        critic_loss = ((returns.detach() - values) ** 2).mean()
-        loss = actor_loss + 0.5 * critic_loss
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-800/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2
+            class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Get In Touch
+          </h2>
+          <p class="mt-4 text-lg text-gray-300">
+            I'm currently looking for full-stack engineering roles. If you're
+            looking for a developer who is passionate about building secure,
+            scalable, and user-friendly applications, I'd love to hear from
+            you.
+          </p>
+          <div class="mt-10">
+            <a href="mailto:davidmoroh@icloud.com"
+              class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
+              davidmoroh@icloud.com
+            </a>
+          </div>
+          <div class="mt-8 flex justify-center space-x-6">
+            <a href="https://www.linkedin.com/in/david-morohunfola-a022b6194/"
+              target="_blank" rel="noopener noreferrer"
+              class="text-gray-400 hover:text-white">
+              <span class="sr-only">LinkedIn</span>
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+            <a href="https://github.com/dav1dm0" target="_blank"
+              rel="noopener noreferrer" class="text-gray-400 hover:text-white">
+              <span class="sr-only">GitHub</span>
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path fill-rule="evenodd"
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z"
+                  clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        self.optimizer.zero_grad()
-        loss.backward()
-        self.optimizer.step()
+  <footer class="bg-gray-900">
+    <div
+      class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <p class="text-center text-base text-gray-400">
+        &copy; 2025 David Morohunfola. All rights reserved.
+      </p>
+    </div>
+  </footer>
 
-    self.memory = []</code></pre>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold mb-4 text-indigo-800">Agent in Action</h3>
-                            <div class="aspect-w-16 aspect-h-9">
-                                <iframe class="rounded-lg" src="https://www.youtube.com/embed/z3ljbwTQrY4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                     <div>
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-800">Training Rewards Per Episode</h3>
-                        <div class="bg-white p-4 rounded-lg shadow-md">
-                            <img src="ppo_rewards_chart.png" alt="Training rewards per episode" class="w-full h-auto rounded-md">
-                        </div>
-                    </div>
-                `
-            },
-            {
-                id: 'text-classifier',
-                title: 'Binary Text Classifier',
-                short_description: 'A project to classify text (e.g., movie reviews) as positive or negative, using various machine learning models and BERT for embeddings.',
-                category: 'Machine Learning',
-                github_link: 'https://huggingface.co/spaces/dav1dm0/text_classifier',
-                link_text: 'View on Hugging Face',
-                technologies: ['Python', 'Scikit-learn', 'PyTorch', 'Transformers', 'BERT', 'XGBoost', 'NLTK', 'Pandas', 'NumPy', 'Hugging Face', 'Docker'],
-                content: `
-                    <p class="text-lg mb-6">This project involved developing and implementing various text classification models to sort positive and negative movie reviews. I engineered data pre-processing pipelines and experimented with multiple algorithms to compare their performance. The interactive demo below is hosted on Hugging Face Spaces and uses a Logistic Regression model for real-time classification.</p>
-                    
-                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Interactive Demo</h3>
-                     <div class="flex justify-center mb-8">
-                        <iframe
-                            src="https://dav1dm0-text-classifier.hf.space"
-                            frameborder="0"
-                            width="850"
-                            height="450"
-                            class="rounded-lg shadow-lg"
-                        ></iframe>
-                    </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Find all tab wrappers
+      const tabWrappers = document.querySelectorAll("[data-tab-wrapper]");
 
-                    <h3 class="text-2xl font-bold mb-4 text-indigo-800">Model Performance & Methodology</h3>
-                    <div class="bg-white/50 p-6 rounded-xl">
-                        <p class="mb-4">All models were trained on the same dataset using state-of-the-art <strong>BERT embeddings</strong> for text vectorization, which provides a much richer contextual understanding of the text compared to older methods like TF-IDF. The live demo embedded above uses the <strong>Logistic Regression</strong> model for its balance of speed and accuracy.</p>
-                        <p class="font-semibold mb-2">Accuracy results across different models were as follows:</p>
-                        <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li><strong>Logistic Regression:</strong> 84% Accuracy</li>
-                            <li><strong>Support Vector Machine (SVM):</strong> 86% Accuracy</li>
-                            <li><strong>XGBoost:</strong> 87% Accuracy</li>
-                            <li><strong>Naive Bayes:</strong> 83% Accuracy</li>
-                        </ul>
-                    </div>
-                `
-            },
-            {
-                id: 'zoopla-extension',
-                title: 'Zoopla Property Age Extension',
-                short_description: 'A Chrome extension using JavaScript to fetch and display the age of a property directly on a Zoopla listing page.',
-                category: 'Extensions',
-                status: 'Coming Soon!',
-                github_link: 'https://github.com/dav1dm0/zoopla-extension',
-                technologies: ['JavaScript', 'HTML', 'CSS', 'Chrome API'],
-                content: `
-                    <p class="text-lg mb-6">This project is a Chrome extension designed to read the address from a property page on Zoopla, connect to an external API, and display the age of the property directly on the page. It's a practical tool that demonstrates my ability to work with web APIs and build useful browser extensions.</p>
-                `
-            },
-            {
-                id: 'scientific-paper-contribution',
-                title: 'Co-author on Published Scientific Paper',
-                short_description: 'Contributed to a paper on the properties of ozone by performing data extraction and initial analysis on data from 29 scientific sources.',
-                category: 'Other',
-                github_link: 'https://doi.org/10.1016/j.jqsrt.2025.109399',
-                link_text: 'View Published Paper',
-                technologies: [],
-                content: `
-                    <p class="text-lg mb-6">I had the privilege of contributing as a co-author to the paper: <strong>"The ¹⁶O ₃ MARVEL dataset: critically evaluated line positions, intensities, and assignments for the X̃ ¹A ₁ ground electronic state"</strong>, published in the Journal of Quantitative Spectroscopy and Radiative Transfer.</p>
-                    <p class="text-lg mb-6">My primary role involved the meticulous task of performing data extraction and synthesis from 29 distinct scientific literature sources on the properties of ozone. I then conducted the initial data analysis on the measured line positions, which was a critical step in creating a new, critically evaluated dataset for the scientific community. This project honed my skills in data handling, attention to detail, and working within a rigorous academic framework.</p>
-                `
-            },
-            /*
-            {
-                id: 'football-data-analysis',
-                title: 'Football Data Analysis and Predictions',
-                short_description: 'A data science project to analyse football match data and build predictive models for match outcomes.',
-                category: 'Data Science Projects',
-                status: 'Coming Soon!',
-                github_link: '#',
-                technologies: ['Python', 'Pandas', 'Scikit-learn', 'Matplotlib'],
-                content: `<p>Details coming soon.</p>`
-            },
-            */
-        ];
+      tabWrappers.forEach(wrapper => {
+        const tabButtons = wrapper.querySelectorAll(".tab-button");
+        const tabContents = wrapper.querySelectorAll(".tab-content");
 
-        const app = document.getElementById('app');
-        const homeView = document.getElementById('home-view');
-        const projectDetailView = document.getElementById('project-detail-view');
-        const projectsGrid = document.getElementById('projects-grid');
+        tabButtons.forEach(button => {
+          button.addEventListener("click", () => {
+            const tabId = button.getAttribute("data-tab");
 
-        function renderHomePage() {
-            homeView.classList.remove('hidden');
-            projectDetailView.classList.add('hidden');
-            projectDetailView.innerHTML = '';
-
-            const categories = [
-                'Application/Software Development',
-                'Machine Learning',
-                'Data Science Projects',
-                'Extensions',
-                'Other'
-            ];
-
-            let gridHtml = '';
-
-            categories.forEach(category => {
-                const projectsInCategory = projectsData.filter(p => p.category === category);
-                if (projectsInCategory.length > 0) {
-                    gridHtml += `
-                        <section>
-                            <h2 class="text-3xl font-bold mb-6 text-indigo-800">${category}</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    `;
-                    projectsInCategory.forEach(project => {
-                        gridHtml += `
-                            <div class="glassmorphism rounded-2xl p-6 flex flex-col cursor-pointer transition-transform transform hover:-translate-y-2" onclick="renderProjectDetail('${project.id}')">
-                                <h3 class="text-xl font-bold mb-2 text-indigo-900">${project.title}</h3>
-                                <p class="text-gray-700 flex-grow">${project.short_description}</p>
-                                ${project.status ? `<span class="mt-4 text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 self-start">${project.status}</span>` : ''}
-                            </div>
-                        `;
-                    });
-                    gridHtml += `</div></section>`;
-                }
+            // Update buttons
+            tabButtons.forEach(btn => {
+              btn.classList.remove("active-tab");
             });
+            button.classList.add("active-tab");
 
-            projectsGrid.innerHTML = gridHtml;
-        }
-
-        function renderProjectDetail(projectId) {
-            const project = projectsData.find(p => p.id === projectId);
-            if (!project) return;
-
-            window.scrollTo(0, 0);
-
-            const technologiesHtml = project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
-
-            const buttonText = project.link_text || 'View on GitHub';
-
-            // Icon SVGs
-            const githubIcon = `<svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>`;
-            const externalLinkIcon = `<svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>`;
-
-            let buttonIcon;
-            if (project.id === 'scientific-paper-contribution' || project.id === 'text-classifier') {
-                buttonIcon = externalLinkIcon;
-            } else {
-                buttonIcon = githubIcon;
-            }
-
-            // Maintenance message and button state
-            let maintenanceHtml = '';
-            let launchButtonDisabled = project.launch_button_disabled ? 'disabled' : '';
-            let launchButtonClasses = 'inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors';
-            if (project.launch_button_disabled) {
-                launchButtonClasses += ' opacity-50 cursor-not-allowed';
-            }
-
-            if (project.maintenance_message) {
-                maintenanceHtml = `
-                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md mb-6" role="alert">
-                        <p class="font-bold">Under Maintenance</p>
-                        <p>${project.maintenance_message}</p>
-                    </div>
-                `;
-            }
-
-            let contentHtml = project.content;
-            // Find the launch app button and inject maintenance message before it
-            const launchButtonRegex = /<div class="text-center">[\s\S]*?<\/div>/;
-            const launchButtonMatch = contentHtml.match(launchButtonRegex);
-            if (launchButtonMatch) {
-                const launchButtonHtml = launchButtonMatch[0].replace('<a ', `<a ${launchButtonDisabled} class="${launchButtonClasses}" `);
-                contentHtml = contentHtml.replace(launchButtonRegex, maintenanceHtml + launchButtonHtml);
-            }
-
-
-            projectDetailView.innerHTML = `
-                <div class="max-w-4xl mx-auto">
-                    <button onclick="renderHomePage()" class="mb-8 text-indigo-600 font-semibold hover:underline">&larr; Back to all projects</button>
-                    <h1 class="text-4xl md:text-5xl font-black mb-4 text-indigo-900">${project.title}</h1>
-                    <div class="mb-8 glassmorphism p-8 rounded-2xl">
-                        ${contentHtml}
-                    </div>
-
-                    ${project.technologies && project.technologies.length > 0 ? `
-                     <div class="mb-8 glassmorphism p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-800">Technologies Used</h3>
-                        <div class="flex flex-wrap gap-3">
-                            ${technologiesHtml}
-                        </div>
-                    </div>` : ''}
-                    
-                    ${project.github_link ? `
-                    <div class="text-center">
-                        <a href="${project.github_link}" target="_blank" class="inline-flex items-center bg-gray-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-900 transition-colors">
-                            ${buttonIcon}
-                            ${buttonText}
-                        </a>
-                    </div>
-                    ` : ''}
-                </div>
-            `;
-
-            homeView.classList.add('hidden');
-            projectDetailView.classList.remove('hidden');
-        }
-
-        // Initial render
-        renderHomePage();
-
-    </script>
+            // Update content
+            tabContents.forEach(content => {
+              content.classList.remove("active-content");
+              if (content.id === tabId) {
+                content.classList.add("active-content");
+              }
+            });
+          });
+        });
+      });
+    });
+  </script>
 </body>
 
-
 </html>
-
 
