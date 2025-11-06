@@ -186,26 +186,39 @@
           class="text-3xl font-bold tracking-tight text-white sm:text-4xl text-center mb-12">
           About Me
         </h2>
-        <div class="max-w-3xl mx-auto text-lg text-gray-300 space-y-6">
-          <p>
-            Hello! I'm a full-stack engineer driven by a passion for building
-            things that are both useful and user-friendly. My journey started
-            in Computer Science at the University of Bath, which gave me a
-            strong theoretical foundation and a love for complex
-            problem-solving.
-          </p>
-          <p>
-            Today, I channel that passion into creating scalable, secure, and
-            efficient web applications. I thrive on the full-stack challenge:
-            architecting a robust Node.js API, containerizing it with Docker,
-            and deploying it to the cloud is just as exciting to me as crafting
-            a responsive and resilient React frontend.
-          </p>
-          <p>
-            I'm currently seeking a full-stack role where I can contribute to a
-            meaningful product, collaborate with a talented team, and continue
-            to learn and grow as an engineer.
-          </p>
+        <!-- 2-column layout -->
+        <div
+          class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+          <!-- Column 1: Image -->
+          <div class="md:col-span-1">
+            <img
+              src="david-pic.jpg"
+              alt="A photo of David Morohunfola"
+              class="w-64 h-64 md:w-full md:h-auto rounded-full border-4 border-gray-700 shadow-lg mx-auto object-cover" />
+          </div>
+
+          <!-- Column 2: Text -->
+          <div class="md:col-span-2 text-lg text-gray-300 space-y-6">
+            <p>
+              Hello! I'm a full-stack engineer driven by a passion for building
+              things that are both useful and user-friendly. My journey started
+              in Computer Science at the University of Bath, which gave me a
+              strong theoretical foundation and a love for complex
+              problem-solving.
+            </p>
+            <p>
+              Today, I channel that passion into creating scalable, secure, and
+              efficient web applications. I thrive on the full-stack challenge:
+              architecting a robust Node.js API, containerizing it with Docker,
+              and deploying it to the cloud is just as exciting to me as
+              crafting a responsive and resilient React frontend.
+            </p>
+            <p>
+              I'm currently seeking a full-stack role where I can contribute to
+              a meaningful product, collaborate with a talented team, and
+              continue to learn and grow as an engineer.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -253,10 +266,10 @@
             </ul>
           </div>
 
-          <!-- Category: DevOps & Data Science -->
+          <!-- Category: DevOps & ML -->
           <div class="bg-gray-800/50 p-6 rounded-lg shadow-lg">
             <h3 class="text-xl font-semibold text-white mb-4">
-              DevOps & Data Science
+              DevOps & ML
             </h3>
             <ul class="space-y-2 text-gray-300">
               <li><span class="text-blue-400 mr-2">›</span>Docker</li>
@@ -325,8 +338,8 @@
               </div>
 
               <img
-                src="https://placehold.co/600x400/1f2937/9ca3af?text=Gamified+Nutrition+App"
-                alt="Gamified Nutrition App Placeholder"
+                src="gamified-nutrition.png"
+                alt="Gamified Nutrition App"
                 class="w-full h-auto rounded-lg shadow-lg" />
             </div>
 
@@ -541,8 +554,8 @@
             <!-- Project Image/Placeholder -->
             <div>
               <img
-                src="https://placehold.co/600x400/1f2937/9ca3af?text=Recipe+Designer+App"
-                alt="Recipe Designer App Placeholder"
+                src="recipe-builder.png"
+                alt="Recipe Designer App"
                 class="w-full h-auto rounded-lg shadow-lg" />
             </div>
           </div>
@@ -673,11 +686,13 @@
             </div>
 
             <!-- Project Image/Placeholder -->
-            <div>
-              <img
-                src="https://placehold.co/600x400/1f2937/9ca3af?text=Sentiment+Analysis"
-                alt="Sentiment Analysis Placeholder"
-                class="w-full h-auto rounded-lg shadow-lg" />
+            <div
+              class="w-full rounded-lg shadow-lg overflow-hidden bg-gray-800/50">
+              <iframe
+                src="https://dav1dm0-text-classifier.hf.space"
+                frameborder="0" width="100%" height="450"
+                loading="lazy"
+                title="Movie Review Sentiment Analysis Hugging Face Space"></iframe>
             </div>
           </div>
         </div>
@@ -774,5 +789,6 @@
 </body>
 
 </html>
+
 
 
